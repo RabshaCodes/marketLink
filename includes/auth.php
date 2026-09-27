@@ -1,6 +1,5 @@
 <?php
 session_start();
-// require_once 'includes/database.php';
 require_once __DIR__ . '/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -19,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['user_role'] = $user['role'];
             $_SESSION['first_name'] = $user['first_name'];
             $_SESSION['login_success'] = true;
-            header("Location: ../dashboard.php");
+            header("Location: ../" . $user['role'] . "/dashboard.php");
             exit;
         } else {
             $_SESSION['auth_error'] = 'Invalid email or password.';
@@ -32,10 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = trim($_POST['email']);
         $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
         $role = isset($_POST['role']) && $_POST['role'] == 'farmer' ? 'farmer' : 'customer';
-
+        
         $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->execute([$email]);
-
+        
         if ($stmt->fetch()) {
             $_SESSION['auth_error'] = 'Email is already registered.';
             header("Location: ../login.php?tab=register");
@@ -53,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $stmt_farm = $pdo->prepare("INSERT INTO farmers (user_id, farm_name, farm_location) VALUES (?, ?, ?)");
                     $stmt_farm->execute([$user_id, $farm_name, $farm_location]);
                 }
-
+                
                 $pdo->commit();
                 $_SESSION['auth_success'] = 'Registration successful! You can now login.';
                 header("Location: ../login.php");

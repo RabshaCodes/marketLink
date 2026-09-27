@@ -184,30 +184,24 @@ include 'includes/header.php';
             grid-template-columns: 1fr;
         }
         .info-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 0.8rem;
         }
         .info-card {
-            flex-direction: row;
-            align-items: center;
-            gap: 1rem;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
             padding: 1rem;
         }
         .info-content h3 {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
         .info-content p {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
         }
         .contact-section {
             padding: 0 1rem;
             margin: 1.5rem auto;
-        }
-        .map-card {
-            min-height: 250px;
-        }
-        .form-card {
-            padding: 1.2rem;
         }
     }
 </style>

@@ -58,9 +58,6 @@ include 'includes/header.php';
         cursor: pointer;
         transition: var(--transition);
         background: var(--white);
-        width: 100%;
-        height: 100px;
-        box-sizing: border-box;
     }
     
     .farmer-card:hover {
@@ -82,7 +79,6 @@ include 'includes/header.php';
 
     .farmer-info {
         flex: 1;
-        min-width: 0;
     }
     
     .farmer-name {
@@ -90,18 +86,12 @@ include 'includes/header.php';
         font-size: 1rem;
         color: var(--text-dark);
         margin-bottom: 0.2rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
     
     .farmer-meta {
         font-size: 0.8rem;
         color: #6b7280;
         margin-bottom: 0.2rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
     
     .farmer-rating {
@@ -117,7 +107,6 @@ include 'includes/header.php';
         padding: 0.4rem 0.8rem;
         font-size: 0.8rem;
         border-radius: 6px;
-        white-space: nowrap;
     }
 
     .map-container {
@@ -159,18 +148,17 @@ include 'includes/header.php';
     .popup-btn {
         display: inline-block;
         background: var(--primary-color);
-        color: white !important;
+        color: white;
         padding: 0.5rem 1.2rem;
         border-radius: 6px;
         font-size: 0.85rem;
         font-weight: 600;
         text-decoration: none;
-        transition: all 0.3s ease;
+        transition: var(--transition);
     }
     .popup-btn:hover {
         background: var(--primary-dark);
-        color: white !important;
-        transform: translateY(-2px);
+        color: white;
     }
 
     /* Responsive for Tablet/Mobile */
@@ -185,24 +173,6 @@ include 'includes/header.php';
         .farmers-sidebar {
             /* Restrict height on mobile so map stays visible below it */
             max-height: 35vh; 
-        }
-    }
-
-    @media (max-width: 480px) {
-        .farmer-card {
-            padding: 0.6rem;
-            gap: 0.5rem;
-        }
-        .farmer-avatar {
-            width: 40px;
-            height: 40px;
-        }
-        .farmer-name {
-            font-size: 0.9rem;
-        }
-        .farmer-card .btn {
-            padding: 0.3rem 0.5rem;
-            font-size: 0.7rem;
         }
     }
 </style>
