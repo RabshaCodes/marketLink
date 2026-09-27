@@ -14,11 +14,28 @@ include 'includes/header.php';
 
     /* Hero Banner */
     .about-hero {
-        background: linear-gradient(135deg, #10523e 0%, #6eb793 100%);
+        position: relative;
+        background: url('assets/images/about-bg.avif') center right / cover no-repeat;
         border-radius: 16px;
         padding: 4rem 3rem;
         color: white;
         margin-bottom: 2rem;
+        overflow: hidden;
+    }
+    .about-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, #10523e 0%, rgba(16, 82, 62, 0.6) 50%, transparent 100%);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        mask-image: linear-gradient(to right, black 30%, transparent 80%);
+        -webkit-mask-image: linear-gradient(to right, black 30%, transparent 80%);
+        z-index: 1;
+    }
+    .about-hero > * {
+        position: relative;
+        z-index: 2;
     }
     .about-hero h1 {
         font-size: 2.5rem;

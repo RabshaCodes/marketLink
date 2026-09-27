@@ -4,10 +4,30 @@
  * scroll-reveal animation shared by every dashboard page.
  */
 ?>
-    </div><!-- /.main-content -->
+</div><!-- /.main-content -->
 </div><!-- /.dash-layout -->
 
+<!-- Drawer backdrop (visible on tablet/mobile only) -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
 <script>
+    // Off-canvas sidebar toggle
+    (function () {
+        var btn = document.getElementById('sidebarToggle');
+        var backdrop = document.getElementById('sidebarBackdrop');
+        if (!btn || !backdrop) return;
+        var open = function (state) {
+            document.body.classList.toggle('sidebar-open', state);
+            btn.setAttribute('aria-expanded', state ? 'true' : 'false');
+        };
+        btn.addEventListener('click', function () {
+            open(!document.body.classList.contains('sidebar-open'));
+        });
+        backdrop.addEventListener('click', function () { open(false); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') open(false); });
+        window.addEventListener('resize', function () { if (window.innerWidth > 980) open(false); });
+    })();
+
     // Staggered scroll-reveal for any element with .reveal
     (function () {
         var items = document.querySelectorAll('.reveal');

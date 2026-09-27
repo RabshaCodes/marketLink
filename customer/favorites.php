@@ -24,24 +24,41 @@ $fav_products = [
 ];
 ?>
 <style>
+    @media (max-width: 768px) {
+        .top-row-flex { flex-direction: column; align-items: flex-start; }
+        .prod-row-card { flex-direction: column; align-items: flex-start; }
+        .prod-row-card .prc-info { width: 100%; margin-bottom: 0.5rem; }
+    }
+    .top-row-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    .top-row-flex .page-header { margin-bottom: 0; }
+    .top-row-flex .tab-row { margin-bottom: 0; }
+
     .sub-heading { margin: 0 0 1.1rem; font-size: 1.18rem; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
 
     /* FARMER CARDS */
     .favorites-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.4rem; margin-bottom: 2.6rem; }
     .fav-card {
-        position: relative; background: var(--surface); padding: 1.7rem 1.4rem 1.4rem; border-radius: var(--r-lg);
+        position: relative; background: var(--surface); padding: 2.2rem 1.4rem 1.4rem; border-radius: var(--r-lg);
         box-shadow: var(--shadow-sm); border: 1px solid var(--line); text-align: center;
         transition: transform .25s, box-shadow .25s;
+        display: flex; flex-direction: column; min-height: 320px;
     }
     .fav-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-    .fav-card img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; margin-bottom: .8rem; border: 3px solid #fff; box-shadow: 0 0 0 3px #DCF0E3; }
-    .fav-card h4 { margin: 0 0 .3rem; font-size: 1.02rem; font-weight: 800; color: var(--ink); }
-    .fav-card .fav-loc { margin: 0 0 .55rem; font-size: .82rem; color: var(--muted); font-weight: 600; display: flex; align-items: center; justify-content: center; gap: .3rem; }
-    .fav-card .fav-loc svg { color: var(--primary); }
-    .fav-badge { display: inline-flex; align-items: center; gap: .3rem; background: #FFF7E6; color: #B45309; font-weight: 800; font-size: .78rem; padding: .22rem .6rem; border-radius: 999px; margin-bottom: 1rem; }
+    .fav-card img { width: 84px; height: 84px; border-radius: 16px; object-fit: cover; margin-bottom: .8rem; border: 4px solid #fff; box-shadow: 0 0 0 3px #DCF0E3; align-self: center; }
+    .fav-card h4 { margin: 0 0 .35rem; font-size: 1.15rem; font-weight: 800; color: var(--ink); }
+    .fav-card .fav-loc { margin: 0 0 .6rem; font-size: .88rem; color: var(--muted); font-weight: 600; display: flex; align-items: center; justify-content: center; gap: .4rem; }
+    .fav-card .fav-loc svg { color: var(--sb-2); }
+    .fav-badge { display: inline-flex; align-items: center; justify-content: center; gap: .3rem; background: #FFF7E6; color: #B45309; font-weight: 800; font-size: .82rem; padding: .35rem .8rem; border-radius: 999px; margin-bottom: 1.25rem; align-self: center; }
     .fav-badge .star { color: #F59E0B; }
-    .fav-btn { display: block; width: 100%; padding: .62rem; background: linear-gradient(135deg,#1D9A50,#15803D); color: #fff; text-decoration: none; border-radius: 12px; font-size: .88rem; font-weight: 700; box-sizing: border-box; box-shadow: 0 8px 18px -8px rgba(21,128,61,.6); transition: filter .2s, transform .2s; }
-    .fav-btn:hover { filter: brightness(1.06); transform: translateY(-1px); }
+    .fav-btn { display: block; width: 100%; padding: .75rem; background: linear-gradient(135deg, var(--sb-2), var(--sb-1)); color: #fff; text-decoration: none; border-radius: 12px; font-size: .95rem; font-weight: 700; box-sizing: border-box; box-shadow: 0 8px 18px -8px rgba(6,64,43,.6); transition: filter .2s, transform .2s; margin-top: auto; }
+    .fav-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
     .unfav { position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-radius: 50%; background: #FEE2E2; color: #DC2626; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform .2s; }
     .unfav:hover { transform: scale(1.1); }
 
@@ -54,21 +71,23 @@ $fav_products = [
     .prod-row-card img { width: 56px; height: 56px; border-radius: 13px; object-fit: cover; box-shadow: 0 0 0 3px #F1F7F2; }
     .prc-info { flex: 1; }
     .prc-info h4 { margin: 0 0 .2rem; font-size: .98rem; font-weight: 800; color: var(--ink); }
-    .prc-info p { margin: 0; font-size: .85rem; color: var(--primary); font-weight: 800; }
+    .prc-info p { margin: 0; font-size: .85rem; color: var(--sb-1); font-weight: 800; }
     .btn-outline { border: 1.5px solid var(--line); padding: .5rem 1rem; border-radius: 10px; color: var(--ink-2); text-decoration: none; font-size: .84rem; font-weight: 700; background: #fff; transition: all .2s; }
-    .btn-outline:hover { border-color: var(--primary-2); color: var(--primary); }
+    .btn-outline:hover { border-color: var(--sb-2); color: var(--sb-1); }
     .btn-outline.danger:hover { border-color: #FCA5A5; color: #DC2626; }
 </style>
 
-<div class="page-body" style="max-width: 950px;">
-    <div class="page-header reveal">
-        <h1>Favorites</h1>
-        <p>Your saved farmers and products, ready when you are.</p>
-    </div>
+<div class="page-body">
+    <div class="top-row-flex reveal">
+        <div class="page-header">
+            <h1>Favorites</h1>
+            <p>Your saved farmers and products, ready when you are.</p>
+        </div>
 
-    <div class="tab-row reveal">
-        <button class="tab-pill active" type="button">Farmers (<?php echo count($fav_farmers); ?>)</button>
-        <button class="tab-pill" type="button">Products (<?php echo count($fav_products); ?>)</button>
+        <div class="tab-row">
+            <button class="tab-pill active" type="button">Farmers (<?php echo count($fav_farmers); ?>)</button>
+            <button class="tab-pill" type="button">Products (<?php echo count($fav_products); ?>)</button>
+        </div>
     </div>
 
     <h3 class="sub-heading reveal">Saved Farmers</h3>

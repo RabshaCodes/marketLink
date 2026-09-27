@@ -37,7 +37,7 @@ $reviews = [
     .product-review-info { display: flex; gap: 1.05rem; align-items: center; }
     .product-review-info img { width: 68px; height: 68px; border-radius: 16px; object-fit: cover; box-shadow: 0 0 0 3px #F1F7F2, var(--shadow-sm); }
     .product-review-info h2 { margin: 0 0 .3rem; font-size: 1.3rem; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
-    .product-review-info .price { margin: 0 0 .45rem; color: var(--primary); font-size: .9rem; font-weight: 800; }
+    .product-review-info .price { margin: 0 0 .45rem; color: var(--sb-1); font-size: .9rem; font-weight: 800; }
     .product-review-info .rating { display: inline-flex; align-items: center; gap: .35rem; color: #B45309; font-weight: 800; font-size: .88rem; background: #FFF7E6; padding: .22rem .65rem; border-radius: 999px; }
     .product-review-info .rating .star { color: #F59E0B; }
     .product-review-info .rating span { color: var(--muted); font-weight: 600; }
@@ -67,9 +67,25 @@ $reviews = [
     .review-content .stars { color: #F59E0B; margin: .35rem 0 .55rem; letter-spacing: 2px; font-size: .95rem; }
     .review-content .stars .off { color: #DDE6DF; }
     .review-content p { margin: 0; color: var(--ink-2); line-height: 1.6; font-size: .93rem; }
+
+    /* CUSTOM THEME BUTTON */
+    .btn-theme-solid {
+        display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
+        background: linear-gradient(135deg, var(--sb-2), var(--sb-1));
+        color: #fff;
+        padding: .68rem 1.45rem;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 700; font-size: .88rem; font-family: inherit;
+        border: none; cursor: pointer;
+        box-shadow: 0 10px 22px -8px rgba(6, 64, 43, .5);
+        transition: transform .2s, box-shadow .2s, filter .2s;
+    }
+    .btn-theme-solid:hover { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 14px 28px -8px rgba(6, 64, 43, .55); }
+    .btn-theme-solid:active { transform: translateY(0); }
 </style>
 
-<div class="page-body" style="max-width: 900px;">
+<div class="page-body">
     <div class="page-header reveal">
         <h1>Product Reviews</h1>
         <p>See what other customers are saying.</p>
@@ -86,7 +102,7 @@ $reviews = [
                     <div class="rating"><span class="star">&#9733;</span> 4.8 <span>(56 reviews)</span></div>
                 </div>
             </div>
-            <a href="#" class="btn-green-solid">
+            <a href="#" class="btn-theme-solid">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"></path></svg>
                 Write a Review
             </a>
